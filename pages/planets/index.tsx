@@ -34,8 +34,8 @@ const Planets = () => {
 					<Grid templateColumns="repeat(3, 1fr)" gap={6}>
 						{randomArray.map((value, index) => (
 							<Box key={index} rounded="lg">
-								<Skeleton height={20} rounded="lg" />
-								<SkeletonText noOfLines={4} mt={4} />
+								<Skeleton height={40} rounded="lg" />
+								{/* <SkeletonText noOfLines={4} mt={4} /> */}
 							</Box>
 						))}
 					</Grid>
