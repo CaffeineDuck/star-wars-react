@@ -1,56 +1,61 @@
-import { Box, Heading, Image, Badge } from "@chakra-ui/react";
+import { Box, Heading, Image, Badge, Container, Text } from "@chakra-ui/react";
 import React from "react";
 import { PlanetClass } from "./utils/Types/Planets";
+import NextLink from 'next/link'
 
 interface Props {
-  planet: PlanetClass;
+	planet: PlanetClass;
 }
 
 const PlanetCard = (props: Props) => {
-  return (
-    <div>
-      <Box
-        maxW="sm"
-        borderWidth="1px"
-        borderRadius="lg"
-        overflow="hidden"
-        my="1rem"
-      >
-        <Image
-          src="https://picsum.photos/1024"
-          alt={`${props.planet.name}'s image`}
-        />
+  const [planetId, _] = props.planet.url.split('/').slice(-2)
 
-        <Box p="6">
-          <Box d="flex" alignItems="baseline">
-            <Badge borderRadius="full" px="2" colorScheme="teal">
-              Planet
+	return (
+		<div>
+      {console.log(planetId)}
+			<Box
+				maxW="sm"
+				borderWidth="1px"
+				borderRadius="lg"
+				overflow="hidden"
+			>
+				<Box p="6">
+					<Box d="flex" alignItems="baseline">
+            <Badge as="a" borderRadius="full" px="2" colorScheme="teal">
+                Planet
             </Badge>
-            <Box
-              color="gray.500"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              fontSize="xs"
-              textTransform="uppercase"
-              ml="2"
-            >
-              {props.planet.population} Population
-            </Box>
-          </Box>
+					</Box>
 
-          <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            isTruncated
-          >
-            {props.planet.name}
-          </Box>
-        </Box>
-      </Box>
-    </div>
-  );
+					<Box
+						mt="1"
+						fontWeight="semibold"
+						as="h4"
+						lineHeight="tight"
+						isTruncated
+            fontSize="lg"
+					>
+            <NextLink href={`/planets/${planetId}`} passHref>
+              <Text as="a">
+                {props.planet.name}
+              </Text>
+            </NextLink>
+					</Box>
+
+					<Container
+						color="gray.500"
+						fontWeight="semibold"
+						letterSpacing="wide"
+						fontSize="sm"
+					>
+						<Text>&bull; Diameter: {props.planet.diameter}</Text>
+						<Text>&bull; Orbital Period: {props.planet.orbital_period} Days</Text>
+						<Text>&bull; Climate: {props.planet.climate}</Text>
+						<Text>&bull; Water: {props.planet.surface_water}% Covered In Water</Text>
+					</Container>
+				</Box>
+			</Box>
+		</div>
+	);
 };
 
 export default PlanetCard;
