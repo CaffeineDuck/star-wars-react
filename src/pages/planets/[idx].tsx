@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import Error from "../../components/Error";
-import { PlanetClass } from "../../components/utils/Types/Planets";
+import { PlanetClass } from "../../utils/Types/Planets";
 import { stat } from "fs";
 
 const Planet = () => {

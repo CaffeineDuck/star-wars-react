@@ -9,7 +9,7 @@ import {
 	SkeletonText,
 	SkeletonCircle,
 } from "@chakra-ui/react";
-import { PlanetClass } from "../../components/utils/Types/Planets";
+import { PlanetClass } from "../../utils/Types/Planets";
 import PlanetCard from "../../components/PlanetCard";
 
 const Planets = () => {
