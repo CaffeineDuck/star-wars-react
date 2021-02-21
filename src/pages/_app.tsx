@@ -1,5 +1,5 @@
 import { ColorModeScript } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 //Styling
@@ -8,12 +8,11 @@ import { Box, ChakraProvider } from "@chakra-ui/react";
 
 //Components
 import Navbar from "../components/NavBar";
+import TopLoadingBar from "../components/TopLoadingBar";
 
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
-	const [page, setPage] = useState("planets");
-
 	return (
 		<React.StrictMode>
 			<ColorModeScript />
@@ -21,10 +20,11 @@ function MyApp({ Component, pageProps }) {
 				<ChakraProvider theme={theme}>
 
 					<Box mx="9.9375rem">
+						<TopLoadingBar />
 						<Navbar />
 						<Component {...pageProps} />
 					</Box>
-          
+					
 				</ChakraProvider>
 			</QueryClientProvider>
 		</React.StrictMode>

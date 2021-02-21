@@ -1,14 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import {
-	Heading,
-	Text,
-	Box,
-	Grid,
-	Skeleton,
-	SkeletonText,
-	SkeletonCircle,
-} from "@chakra-ui/react";
+import { Heading, Text, Box, Grid, Skeleton } from "@chakra-ui/react";
 import { PlanetClass } from "../../utils/Types/Planets";
 import PlanetCard from "../../components/PlanetCard";
 
@@ -35,7 +27,6 @@ const Planets = () => {
 						{randomArray.map((value, index) => (
 							<Box key={index} rounded="lg">
 								<Skeleton height={40} rounded="lg" />
-								{/* <SkeletonText noOfLines={4} mt={4} /> */}
 							</Box>
 						))}
 					</Grid>
