@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { Heading, Text, Box, Grid, Skeleton } from "@chakra-ui/react";
 import { PlanetClass } from "../../utils/Types/Planets";
 import PlanetCard from "../../components/PlanetCard";
+import Error from "../../components/Error";
 
 const Planets = () => {
 	const fetchPlanets = async () => {
@@ -33,7 +34,7 @@ const Planets = () => {
 				</div>
 			)}
 
-			{status === "error" && <Text>Error fetching data!</Text>}
+			{status === "error" && <Error />}
 
 			{status === "success" && (
 				<Grid templateColumns="repeat(3, 1fr)" gap={6}>

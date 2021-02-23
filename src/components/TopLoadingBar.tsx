@@ -11,12 +11,15 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 const TopLoadingBar = () => {
 	return (
-        <div>
-            <Head>
-                <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css"/>
-            </Head>
-        </div>
-    );
+		<div>
+			<Head>
+				<link
+					rel="stylesheet"
+					href="https://unpkg.com/nprogress@0.2.0/nprogress.css"
+				/>
+			</Head>
+		</div>
+	);
 };
 
 export default TopLoadingBar;

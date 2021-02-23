@@ -1,6 +1,7 @@
 import { ColorModeScript } from "@chakra-ui/react";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 //Styling
 import theme from "../utils/Theme";
@@ -18,14 +19,13 @@ function MyApp({ Component, pageProps }) {
 			<ColorModeScript />
 			<QueryClientProvider client={queryClient}>
 				<ChakraProvider theme={theme}>
-
 					<Box mx="9.9375rem">
 						<TopLoadingBar />
 						<Navbar />
 						<Component {...pageProps} />
 					</Box>
-					
 				</ChakraProvider>
+				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</React.StrictMode>
 	);
