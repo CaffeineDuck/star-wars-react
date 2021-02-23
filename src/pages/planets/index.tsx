@@ -4,6 +4,7 @@ import { Heading, Text, Box, Grid, Skeleton } from "@chakra-ui/react";
 import { PlanetClass } from "../../utils/Types/Planets";
 import PlanetCard from "../../components/PlanetCard";
 import Error from "../../components/Error";
+import WithBackButtonLayout from "../../layouts/WithBack";
 
 const Planets = () => {
 	const fetchPlanets = async () => {
@@ -18,7 +19,7 @@ const Planets = () => {
 
 	return (
 		<div>
-			<Heading size="lg" my="2rem">
+			<Heading size="lg" my="1rem">
 				Planets
 			</Heading>
 
@@ -48,5 +49,7 @@ const Planets = () => {
 		</div>
 	);
 };
+
+Planets.Layout = WithBackButtonLayout
 
 export default Planets;

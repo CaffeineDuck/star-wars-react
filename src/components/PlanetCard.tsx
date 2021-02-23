@@ -1,7 +1,7 @@
-import { Box, Heading, Image, Badge, Container, Text } from "@chakra-ui/react";
+import { Box, Badge, Container, Text } from "@chakra-ui/react";
 import React from "react";
 import { PlanetClass } from "../utils/Types/Planets";
-import NextLink from "next/link";
+import Link from "next/link";
 
 interface Props {
 	planet: PlanetClass;
@@ -12,7 +12,6 @@ const PlanetCard = (props: Props) => {
 
 	return (
 		<div>
-			{console.log(planetId)}
 			<Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
 				<Box p="6">
 					<Box d="flex" alignItems="baseline">
@@ -29,9 +28,9 @@ const PlanetCard = (props: Props) => {
 						isTruncated
 						fontSize="lg"
 					>
-						<NextLink href={`/planets/${planetId}`} passHref>
+						<Link href={`/planets/${planetId}`} passHref>
 							<Text as="a">{props.planet.name}</Text>
-						</NextLink>
+						</Link>
 					</Box>
 
 					<Container
@@ -40,11 +39,15 @@ const PlanetCard = (props: Props) => {
 						letterSpacing="wide"
 						fontSize="sm"
 					>
-						<Text>&bull; Diameter: {props.planet.diameter}</Text>
+						<Text>
+							&bull; Diameter: {props.planet.diameter}
+						</Text>
 						<Text>
 							&bull; Orbital Period: {props.planet.orbital_period} Days
 						</Text>
-						<Text>&bull; Climate: {props.planet.climate}</Text>
+						<Text>
+							&bull; Climate: {props.planet.climate}
+						</Text>
 						<Text>
 							&bull; Water: {props.planet.surface_water}% Covered In Water
 						</Text>

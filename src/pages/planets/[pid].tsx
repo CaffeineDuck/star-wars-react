@@ -6,12 +6,12 @@ import Error from "../../components/Error";
 import { PlanetClass } from "../../utils/Types/Planets";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
-import { stringify } from "querystring";
+import WithBackButtonLayout from "../../layouts/WithBack";
+import SinglePlanet from "../../components/SinglePlanet";
 
 interface Props {
-	pid: string
+	pid: string;
 }
-
 
 const Planet = (props: Props) => {
 	const router = useRouter();
@@ -37,7 +37,10 @@ const Planet = (props: Props) => {
 			<Head>
 				<title>Planet Data</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" /> 
+				<meta
+					httpEquiv="Content-Security-Policy"
+					content="upgrade-insecure-requests"
+				/>
 			</Head>
 
 			{status === "loading" && (
@@ -57,40 +60,45 @@ const Planet = (props: Props) => {
 						<title>{`${planetData.name}`}</title>
 					</Head>
 
-					<Text>{planetData.name}</Text>
+					<SinglePlanet planetData={planetData}/>
 				</div>
 			)}
 		</div>
 	);
 };
 
-// Planet.getInitialProps = async ({query}) => {
-// 	return {props: {pid: query.pid}}
-// }
+// Using getInitialProps didn't work in static sites so using getStaticProps and getStaticPaths!
+/*
+Planet.getInitialProps = async ({query}) => {
+	return {props: {pid: query.pid}}
+}
+*/
 
-
-// Using getStaticProps and getStaticPaths (Didn't go that well!)
+// Using getStaticProps and getStaticPaths (Works well in static sites!)
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	return {
-		props : {
-			pid: context.params.pid
-		}
-	}
-}
+		props: {
+			pid: context.params.pid,
+		},
+	};
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const endValue = parseInt((await (await fetch('https://swapi.dev/api/planets/')).json()).count)
-	let paths = []
+	const endValue = parseInt(
+		(await (await fetch("https://swapi.dev/api/planets/")).json()).count
+	);
+	let paths = [];
 
-	for (let i = 1; i <= endValue; i++){
-		paths.push({params: {pid: i.toString()}})
+	for (let i = 1; i <= endValue; i++) {
+		paths.push({ params: { pid: i.toString() } });
 	}
 	return {
 		paths,
-		fallback: false
-	}
-}
+		fallback: false,
+	};
+};
 
+Planet.Layout = WithBackButtonLayout;
 
 export default Planet;

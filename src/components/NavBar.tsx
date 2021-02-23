@@ -24,7 +24,7 @@ const NavBar = (props: Props) => {
 
 	return (
 		<div>
-			<Box py="1rem">
+			<Box py="1rem" mb="0.5rem">
 				<Box>
 					<Flex>
 						<NextLink href="/" passHref>

@@ -1,5 +1,6 @@
-import { Heading } from '@chakra-ui/react'
+import { Heading, Menu } from '@chakra-ui/react'
 import React from 'react'
+import WithBackButtonLayout from '../../layouts/WithBack'
 
 interface Props {
     
@@ -14,5 +15,7 @@ const MoreStarWars = (props: Props) => {
         </div>
     )
 }
+
+MoreStarWars.Layout = WithBackButtonLayout
 
 export default MoreStarWars
