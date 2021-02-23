@@ -36,6 +36,7 @@ const Planet = (props: Props) => {
 			<Head>
 				<title>Planet Data</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" /> 
 			</Head>
 
 			{status === "loading" && (
