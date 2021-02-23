@@ -6,6 +6,10 @@ import PlanetCard from "../../components/PlanetCard";
 import Error from "../../components/Error";
 import WithBackButtonLayout from "../../layouts/WithBack";
 
+const randomArray = Array.from({ length: 10 }, () =>
+		Math.floor(Math.random() * 100)
+	);
+
 const Planets = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 
@@ -23,17 +27,13 @@ const Planets = () => {
 		status,
 		isFetching,
 	} = useInfiniteQuery("planets", fetchPlanets, {
-		getNextPageParam: (lastPage, pages) => pageNumber,
+		getNextPageParam: (lastPage, pages) => pageNumber<=(lastPage.count/10)? pageNumber: undefined,
 	});
 
-	const onLoadMore = (e) => {
+	const onLoadMore = () => {
 		setPageNumber(pageNumber + 1);
 		fetchNextPage();
 	};
-
-	const randomArray = Array.from({ length: 10 }, () =>
-		Math.floor(Math.random() * 100)
-	);
 
 	return (
 		<div>
@@ -41,17 +41,7 @@ const Planets = () => {
 				Planets
 			</Heading>
 
-			{status === "loading" && (
-				<div>
-					<Grid templateColumns="repeat(3, 1fr)" gap={6}>
-						{randomArray.map((value, index) => (
-							<Box key={index} rounded="lg">
-								<Skeleton height={40} rounded="lg" />
-							</Box>
-						))}
-					</Grid>
-				</div>
-			)}
+			{status === "loading" && <Loading />}
 
 			{status === "error" && <Error />}
 
@@ -68,6 +58,8 @@ const Planets = () => {
 							</React.Fragment>
 						))}
 					</Grid>
+
+					{isFetchingNextPage && (<Loading />)}
 
 					<Flex>
 						<Button
@@ -89,6 +81,18 @@ const Planets = () => {
 		</div>
 	);
 };
+
+const Loading = () => (
+	<div>
+			<Grid templateColumns="repeat(3, 1fr)" gap={6}>
+				{randomArray.map((value, index) => (
+					<Box key={index} rounded="lg">
+						<Skeleton height={40} rounded="lg" />
+					</Box>
+				))}
+			</Grid>
+	</div>
+)
 
 Planets.Layout = WithBackButtonLayout;
 
