@@ -6,6 +6,7 @@ import Error from "../../components/Error";
 import { PlanetClass } from "../../utils/Types/Planets";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
+import { stringify } from "querystring";
 
 interface Props {
 	pid: string
@@ -14,7 +15,7 @@ interface Props {
 
 const Planet = (props: Props) => {
 	const router = useRouter();
-	const idx = router.query.idx || props.pid;
+	const idx = router.query.pid || props.pid;
 
 	const fetchPlanet = async () => {
 		const res = await fetch(`https://swapi.dev/api/planets/${idx}`);
@@ -63,8 +64,33 @@ const Planet = (props: Props) => {
 	);
 };
 
-Planet.getInitialProps = ({query}) => {
-	return {props: {pid: query.idx}}
+// Planet.getInitialProps = async ({query}) => {
+// 	return {props: {pid: query.pid}}
+// }
+
+
+// Using getStaticProps and getStaticPaths (Didn't go that well!)
+
+export const getStaticProps: GetStaticProps = async (context) => {
+	return {
+		props : {
+			pid: context.params.pid
+		}
+	}
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	const endValue = parseInt((await (await fetch('https://swapi.dev/api/planets/')).json()).count)
+	let paths = []
+
+	for (let i = 1; i <= endValue; i++){
+		paths.push({params: {pid: i.toString()}})
+	}
+	return {
+		paths,
+		fallback: false
+	}
+}
+
 
 export default Planet;
