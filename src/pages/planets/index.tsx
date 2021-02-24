@@ -13,7 +13,8 @@ const randomArray = Array.from({ length: 10 }, () =>
 const Planets = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 
-	const fetchPlanets = async ({ pageParam = 1 }) => {
+	const fetchPlanets = async ({ pageParam = pageNumber }) => {
+		setPageNumber(pageNumber + 1);
 		const res = await fetch("https://swapi.dev/api/planets/?page=" + pageParam);
 		return res.json();
 	};
@@ -28,11 +29,6 @@ const Planets = () => {
 		getNextPageParam: (lastPage, pages) =>
 			pageNumber <= lastPage.count / 10 ? pageNumber : undefined,
 	});
-
-	const onLoadMore = () => {
-		setPageNumber(pageNumber + 1);
-		fetchNextPage();
-	};
 
 	return (
 		<div>
@@ -65,7 +61,7 @@ const Planets = () => {
 							my="1rem"
 							placeSelf="center"
 							mx="auto"
-							onClick={onLoadMore}
+							onClick={() => fetchNextPage()}
 							disabled={!hasNextPage || isFetchingNextPage}
 						>
 							{isFetchingNextPage
@@ -83,7 +79,7 @@ const Planets = () => {
 
 const Loading = () => (
 	<div>
-		<Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]} gap={6}>
+		<Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(3, 1fr)"]} gap={6}>
 			{randomArray.map((value, index) => (
 				<Box key={index} rounded="lg">
 					<Skeleton height={40} rounded="lg" />
