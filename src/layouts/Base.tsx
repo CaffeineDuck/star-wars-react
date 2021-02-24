@@ -10,7 +10,7 @@ interface Props {
 const BaseLayout: React.FC<LayoutProps> = ({children}) => {
     return (
         <div>
-            <Box mx="9.9375rem">
+            <Box mx={["1rem", "1.5rem", "2rem", "9.9375rem"]}>
                 <Header />
                 {children}
             </Box>
