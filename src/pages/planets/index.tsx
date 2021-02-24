@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { Heading, Box, Grid, Skeleton, Button, Flex } from "@chakra-ui/react";
 import { PlanetClass } from "../../utils/Types/Planets";
-import PlanetCard from "../../components/PlanetCard";
-import Error from "../../components/Error";
+import PlanetCard from "../../components/Planets/PlanetCard";
+import Error from "../../components/utilities/Error";
 import WithBackButtonLayout from "../../layouts/WithBack";
 
 const randomArray = Array.from({ length: 10 }, () =>

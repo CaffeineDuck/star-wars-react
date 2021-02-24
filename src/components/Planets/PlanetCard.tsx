@@ -1,6 +1,6 @@
 import { Box, Badge, Container, Text } from "@chakra-ui/react";
 import React from "react";
-import { PlanetClass } from "../utils/Types/Planets";
+import { PlanetClass } from "../../utils/Types/Planets";
 import Link from "next/link";
 
 interface Props {

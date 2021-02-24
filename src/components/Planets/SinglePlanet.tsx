@@ -10,7 +10,7 @@ import {
 	useColorModeValue
 } from "@chakra-ui/react";
 import React from "react";
-import { PlanetClass } from "../utils/Types/Planets";
+import { PlanetClass } from "../../utils/Types/Planets";
 
 interface Props {
 	planetData: PlanetClass;

@@ -6,22 +6,15 @@ import {
 	MenuButton,
 	MenuItem,
 	MenuList,
-	Stack
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import ColorModeSwitcher from "./ColorModeSwitcher";
+import ColorModeSwitcher from "../utilities/ColorModeSwitcher";
 
-interface Props {
-	menuIsOpen: boolean
-}
-
-const NavItems = ({menuIsOpen}: Props) => {
-	const menuDisplay = menuIsOpen? 'block': 'none'
-
+const NavItemsForDesktop = () => {
 	return (
 		<div>
-			<Stack direction={menuIsOpen? "column": "row"} spacing="1rem" display={{base: menuDisplay, md: "block"}}>
+			<HStack spacing="1rem" display={{ base: "none", md: "block" }}>
 				<NextLink href="/about" passHref>
 					<Button as="a">About</Button>
 				</NextLink>
@@ -47,9 +40,9 @@ const NavItems = ({menuIsOpen}: Props) => {
 				</Menu>
 
 				<ColorModeSwitcher placeSelf="flex-end" pr="1rem" />
-			</Stack>
+			</HStack>
 		</div>
 	);
 };
 
-export default NavItems;
+export default NavItemsForDesktop;

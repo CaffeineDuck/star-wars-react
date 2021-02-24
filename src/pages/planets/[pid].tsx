@@ -2,12 +2,12 @@ import { Box, Skeleton, SkeletonText, Text } from "@chakra-ui/react";
 import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import Error from "../../components/Error";
+import Error from "../../components/utilities/Error";
 import { PlanetClass } from "../../utils/Types/Planets";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import WithBackButtonLayout from "../../layouts/WithBack";
-import SinglePlanet from "../../components/SinglePlanet";
+import SinglePlanet from "../../components/Planets/SinglePlanet";
 
 interface Props {
 	pid: string;

@@ -3,10 +3,6 @@ import React from 'react'
 import {Box} from '@chakra-ui/react'
 import Header from '../components/Header'
 
-interface Props {
-    
-}
-
 const BaseLayout: React.FC<LayoutProps> = ({children}) => {
     return (
         <div>

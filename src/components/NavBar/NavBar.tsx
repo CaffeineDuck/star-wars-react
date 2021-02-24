@@ -1,15 +1,12 @@
-import { Box, Flex, Spacer, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Spacer } from "@chakra-ui/react";
 import React, { useState } from "react";
 import NavLogo from "./Logo";
-import MenuToggle from "./MenuToggle";
-import NavItems from "./NavItems";
+import NavItemsForDesktop from "./NavItemsForDesktop";
+import NavItemsForMobile from './NavItemsForMobile'
 
 
 const NavBar = () => {
 	const [menuIsOpen, setMenuIsOpen] = useState(false)
-	const toggleMenu = () => {
-		setMenuIsOpen(!menuIsOpen)
-	}
 
 	return (
 		<div>
@@ -18,8 +15,8 @@ const NavBar = () => {
 					<Flex>
 						<NavLogo />
 						<Spacer />
-						<NavItems menuIsOpen={menuIsOpen}/>
-						<MenuToggle isOpen={menuIsOpen} toggleMenu={toggleMenu}/>
+						<NavItemsForDesktop />
+						<NavItemsForMobile />
 					</Flex>
 				</Box>
 			</Box>

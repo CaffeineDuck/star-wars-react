@@ -1,5 +1,5 @@
 import React from 'react'
-import BackButton from '../components/BackButton'
+import BackButton from '../components/utilities/BackButton'
 import Header from '../components/Header'
 import { LayoutProps } from '../utils/Props'
 
