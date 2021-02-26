@@ -3,39 +3,39 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import Error from "../../components/utilities/Error";
-import { PlanetClass } from "../../utils/Types/Planets";
+import { PeopleClass } from "../../utils/Types/People";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import WithBackButtonLayout from "../../layouts/WithBack";
-import SinglePlanet from "../../components/Planets/SinglePlanet";
+import SinglePerson from '../../components/Persons/SinglePerson'
 
 interface Props {
 	pid: string;
 }
 
-const Planet = (props: Props) => {
+const People = (props: Props) => {
 	const router = useRouter();
 	const idx = router.query.pid || props.pid;
 
-	const fetchPlanet = async () => {
-		const res = await fetch(`https://swapi.dev/api/planets/${idx}`);
+	const fetchPerson = async () => {
+		const res = await fetch(`https://swapi.dev/api/people/${idx}`);
 		return res.json();
 	};
 
 	interface planetResponse {
-		data: PlanetClass;
+		data: PeopleClass;
 		status: string;
 	}
 
-	const { data: planetData, status: status }: planetResponse = useQuery(
-		"singlePlanet",
-		fetchPlanet
+	const { data: personData, status: status }: planetResponse = useQuery(
+		"singlePerson",
+		fetchPerson
 	) || { data: undefined, status: "loading" };
 
 	return (
 		<div>
 			<Head>
-				<title>Planet Data</title>
+				<title>People Data</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<meta
 					httpEquiv="Content-Security-Policy"
@@ -57,24 +57,16 @@ const Planet = (props: Props) => {
 			{status === "success" && (
 				<div>
 					<Head>
-						<title>{`${planetData.name}`}</title>
+						<title>{`${personData.name} - Star Wars`}</title>
 					</Head>
 
-					<SinglePlanet planetData={planetData}/>
+					<SinglePerson peopleData={personData}/>
 				</div>
 			)}
 		</div>
 	);
 };
 
-// Using getInitialProps didn't work in static sites so using getStaticProps and getStaticPaths!
-/*
-Planet.getInitialProps = async ({query}) => {
-	return {props: {pid: query.pid}}
-}
-*/
-
-// Using getStaticProps and getStaticPaths (Works well in static sites!)
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	return {
@@ -86,7 +78,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const endValue = parseInt(
-		(await (await fetch("https://swapi.dev/api/planets/")).json()).count
+		(await (await fetch("https://swapi.dev/api/people/")).json()).count
 	);
 	let paths = [];
 
@@ -99,6 +91,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-Planet.Layout = WithBackButtonLayout;
+People.Layout = WithBackButtonLayout;
 
-export default Planet;
+export default People;

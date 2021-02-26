@@ -1,16 +1,18 @@
 //Dependencies
 import React from "react";
-import { Heading } from "@chakra-ui/react";
-import Head from 'next/head'
+import { Heading, Flex, useColorModeValue } from "@chakra-ui/react";
+import Head from "next/head";
 
 const App = () => {
-	return(
+	return (
 		<div>
-		<Head>
-			<title>Home - Star Wars</title>
-		</Head>
-	<Heading>Home</Heading>
-	</div>
+			<Head>
+				<title>Home - Star Wars</title>
+			</Head>
+			<Flex>
+				<Heading placeSelf="center" mx="auto" mt="35vh">All the star wars data you would want right here!</Heading>
+			</Flex>
+		</div>
 	);
 };
 

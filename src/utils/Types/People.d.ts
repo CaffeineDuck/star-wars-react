@@ -8,7 +8,7 @@
 /**
  * A person within the Star Wars universe
  */
-export interface People {
+export interface PeopleClass {
   /**
    * An array of starship resources that this person has piloted
    */
