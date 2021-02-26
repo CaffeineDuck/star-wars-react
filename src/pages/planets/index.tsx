@@ -5,6 +5,7 @@ import { PlanetClass } from "../../utils/Types/Planets";
 import PlanetCard from "../../components/Planets/PlanetCard";
 import Error from "../../components/utilities/Error";
 import WithBackButtonLayout from "../../layouts/WithBack";
+import Head from "next/head";
 
 const randomArray = Array.from({ length: 10 }, () =>
 	Math.floor(Math.random() * 100)
@@ -14,8 +15,8 @@ const Planets = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 
 	const fetchPlanets = async ({ pageParam = pageNumber }) => {
-		setPageNumber(pageNumber + 1);
 		const res = await fetch("https://swapi.dev/api/planets/?page=" + pageParam);
+		setPageNumber(pageNumber + 1);
 		return res.json();
 	};
 
@@ -32,6 +33,10 @@ const Planets = () => {
 
 	return (
 		<div>
+			<Head>
+				<title>Star Wars Planets</title>
+			</Head>
+
 			<Heading size="lg" my="1rem">
 				Planets
 			</Heading>
@@ -42,7 +47,7 @@ const Planets = () => {
 
 			{status === "success" && (
 				<div>
-					<Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6}>
+					<Grid templateColumns={{base: "repeat(1, 1fr)", md: "repeat(3, 1fr)"}} gap={6}>
 						{data.pages.map((group: any, index: number) => (
 							<React.Fragment key={index}>
 								{group.results.map((planet: PlanetClass, index: number) => (
@@ -79,7 +84,7 @@ const Planets = () => {
 
 const Loading = () => (
 	<div>
-		<Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(3, 1fr)"]} gap={6}>
+		<Grid templateColumns={{base: "repeat(1, 1fr)", md: "repeat(3, 1fr)"}} gap={6}>
 			{randomArray.map((value, index) => (
 				<Box key={index} rounded="lg">
 					<Skeleton height={40} rounded="lg" />

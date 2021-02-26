@@ -57,7 +57,7 @@ const Planet = (props: Props) => {
 			{status === "success" && (
 				<div>
 					<Head>
-						<title>{`${planetData.name}`}</title>
+						<title>{`${planetData.name} - Star Wars`}</title>
 					</Head>
 
 					<SinglePlanet planetData={planetData}/>
