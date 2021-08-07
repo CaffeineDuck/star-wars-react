@@ -1,4 +1,11 @@
-import { Box, Badge, Container, Text, LinkBox, LinkOverlay, shadow } from "@chakra-ui/react";
+import {
+	Box,
+	Badge,
+	Container,
+	Text,
+	LinkBox,
+	LinkOverlay,
+} from "@chakra-ui/react";
 import React from "react";
 import { PlanetClass } from "../../utils/Types/Planets";
 import Link from "next/link";
@@ -12,7 +19,13 @@ const PlanetCard = (props: Props) => {
 
 	return (
 		<div>
-			<LinkBox maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" _groupHover={{shadow: "small"}}>
+			<LinkBox
+				maxW="sm"
+				borderWidth="1px"
+				borderRadius="lg"
+				overflow="hidden"
+				_groupHover={{ shadow: "small" }}
+			>
 				<Box p="6">
 					<Box d="flex" alignItems="baseline">
 						<Badge as="a" borderRadius="full" px="2" colorScheme="teal">
@@ -39,15 +52,11 @@ const PlanetCard = (props: Props) => {
 						letterSpacing="wide"
 						fontSize="sm"
 					>
-						<Text>
-							&bull; Diameter: {props.planet.diameter}
-						</Text>
+						<Text>&bull; Diameter: {props.planet.diameter}</Text>
 						<Text>
 							&bull; Orbital Period: {props.planet.orbital_period} Days
 						</Text>
-						<Text>
-							&bull; Climate: {props.planet.climate}
-						</Text>
+						<Text>&bull; Climate: {props.planet.climate}</Text>
 						<Text>
 							&bull; Water: {props.planet.surface_water}% Covered In Water
 						</Text>
