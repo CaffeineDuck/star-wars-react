@@ -1,7 +1,6 @@
-import { Heading } from '@chakra-ui/react'
+import { Heading, Box, Text, Flex } from '@chakra-ui/react'
 import React from 'react'
 import WithBackButtonLayout from '../../layouts/WithBack'
-import Person from '../peoples'
 
 interface Props {
     
@@ -10,9 +9,12 @@ interface Props {
 const About = (props: Props) => {
     return (
         <div>
-            <Heading>
-                Hi I am someone so fuck off
+			<Flex>
+				<Heading placeSelf="center" mx="auto" mt="35vh">
+                This is a site to get info about Star Wars
             </Heading>
+			</Flex>
+
         </div>
     )
 }
