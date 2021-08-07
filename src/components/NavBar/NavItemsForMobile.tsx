@@ -44,12 +44,6 @@ const NavItemsForDesktop = () => {
 									</Button>
 								</NextLink>
 
-								<NextLink href="/star-wars" passHref>
-									<Button width="full" as="a" onClick={onClose}>
-										Star Wars
-									</Button>
-								</NextLink>
-
 								<NextLink href="/planets" passHref>
 									<Button width="full" as="a" onClick={onClose}>
 										Planets

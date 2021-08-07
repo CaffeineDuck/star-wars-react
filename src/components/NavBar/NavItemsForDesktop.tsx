@@ -2,13 +2,8 @@ import React from "react";
 import {
 	HStack,
 	Button,
-	Menu,
-	MenuButton,
-	MenuItem,
-	MenuList,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { ChevronDownIcon } from "@chakra-ui/icons";
 import ColorModeSwitcher from "../utilities/ColorModeSwitcher";
 
 const NavItemsForDesktop = () => {
@@ -19,25 +14,13 @@ const NavItemsForDesktop = () => {
 					<Button as="a">About</Button>
 				</NextLink>
 
-				<NextLink href="/star-wars" passHref>
-					<Button as="a">Star Wars</Button>
+				<NextLink href="/planets" passHref>
+					<Button as="a">Planets</Button>
 				</NextLink>
 
-				<Menu>
-					<MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-						More
-					</MenuButton>
-
-					<MenuList>
-						<NextLink href="/planets" passHref>
-							<MenuItem>Planets</MenuItem>
-						</NextLink>
-
-						<NextLink href="/peoples" passHref>
-							<MenuItem>Peoples</MenuItem>
-						</NextLink>
-					</MenuList>
-				</Menu>
+				<NextLink href="/peoples" passHref>
+					<Button as="a">Peoples</Button>
+				</NextLink>
 
 				<ColorModeSwitcher placeSelf="flex-end" pr="1rem" />
 			</HStack>
