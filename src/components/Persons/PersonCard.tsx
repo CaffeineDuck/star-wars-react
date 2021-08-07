@@ -5,7 +5,6 @@ import {
 	Text,
 	LinkBox,
 	LinkOverlay,
-	shadow,
 	Link,
 } from "@chakra-ui/react";
 import React from "react";
