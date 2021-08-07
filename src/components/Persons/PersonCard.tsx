@@ -54,12 +54,14 @@ const PersonCard = ({ person }: Props) => {
 						fontSize="sm"
 					>
 						<Text>
-							&bull; HomeWorld: {" "}
+							&bull; HomeWorld:{" "}
 							<NextLink
-								href={"/planets/" + (person.homeworld.split("/").slice(-2))[0]}
+								href={"/planets/" + person.homeworld.split("/").slice(-2)[0]}
 								passHref
 							>
-								<Link color="blue.300" as="a"> Click Here</Link>
+								<Link color="blue.300" as="a">
+									Click Here
+								</Link>
 							</NextLink>
 						</Text>
 						<Text>&bull; DOB: {person.birth_year}</Text>
