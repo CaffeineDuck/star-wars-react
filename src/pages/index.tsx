@@ -10,7 +10,9 @@ const App = () => {
 				<title>Home - Star Wars</title>
 			</Head>
 			<Flex>
-				<Heading placeSelf="center" mx="auto" mt="35vh">All the star wars data you would want right here!</Heading>
+				<Heading placeSelf="center" mx="auto" mt="35vh">
+					All the star wars data you would want right here!
+				</Heading>
 			</Flex>
 		</div>
 	);
