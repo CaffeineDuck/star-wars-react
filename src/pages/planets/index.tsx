@@ -12,24 +12,15 @@ const randomArray = Array.from({ length: 10 }, () =>
 );
 
 const Planets = () => {
-	const [pageNumber, setPageNumber] = useState(1);
-
-	const fetchPlanets = async ({ pageParam = pageNumber }) => {
+	const fetchPlanets = async ({ pageParam = 1 }) => {
 		const res = await fetch("https://swapi.dev/api/planets/?page=" + pageParam);
-		setPageNumber(pageNumber + 1);
 		return res.json();
 	};
 
-	const {
-		data,
-		fetchNextPage,
-		hasNextPage,
-		isFetchingNextPage,
-		status,
-	} = useInfiniteQuery("planets", fetchPlanets, {
-		getNextPageParam: (lastPage, pages) =>
-			pageNumber <= lastPage.count / 10 ? pageNumber : undefined,
-	});
+	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+		useInfiniteQuery("planets", fetchPlanets, {
+			getNextPageParam: (lastPage, pages) => lastPage.next.slice(-1),
+		});
 
 	return (
 		<div>
@@ -47,7 +38,10 @@ const Planets = () => {
 
 			{status === "success" && (
 				<div>
-					<Grid templateColumns={{base: "repeat(1, 1fr)", md: "repeat(3, 1fr)"}} gap={6}>
+					<Grid
+						templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+						gap={6}
+					>
 						{data.pages.map((group: any, index: number) => (
 							<React.Fragment key={index}>
 								{group.results.map((planet: PlanetClass, index: number) => (
@@ -84,7 +78,10 @@ const Planets = () => {
 
 const Loading = () => (
 	<div>
-		<Grid templateColumns={{base: "repeat(1, 1fr)", md: "repeat(3, 1fr)"}} gap={6}>
+		<Grid
+			templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+			gap={6}
+		>
 			{randomArray.map((value, index) => (
 				<Box key={index} rounded="lg">
 					<Skeleton height={40} rounded="lg" />

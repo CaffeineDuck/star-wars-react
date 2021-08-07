@@ -12,24 +12,15 @@ const randomArray = Array.from({ length: 10 }, () =>
 );
 
 const Peoples = () => {
-	const [pageNumber, setPageNumber] = useState(1);
-
 	const fetchPeoples = async ({ pageParam = 1 }) => {
 		const res = await fetch("https://swapi.dev/api/people/?page=" + pageParam);
-		setPageNumber(pageNumber + 1);
 		return res.json();
 	};
 
-	const {
-		data,
-		fetchNextPage,
-		hasNextPage,
-		isFetchingNextPage,
-		status,
-	} = useInfiniteQuery("peoples", fetchPeoples, {
-		getNextPageParam: (lastPage, pages) =>
-			pageNumber <= lastPage.count / 10 ? pageNumber : undefined,
-	});
+	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+		useInfiniteQuery("peoples", fetchPeoples, {
+			getNextPageParam: (lastPage, pages) => lastPage.next.slice(-1),
+		});
 
 	return (
 		<div>
